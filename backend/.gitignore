@@ -1,0 +1,21 @@
+# Environment files
+.env
+**/.env
+
+# ZIP files
+*.zip
+
+# Python
+**/__pycache__/
+*.pyc
+
+# Spring Boot
+backend/target/
+
+# React
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
+.vscode/
