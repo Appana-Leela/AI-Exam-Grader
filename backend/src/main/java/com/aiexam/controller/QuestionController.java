@@ -4,6 +4,8 @@ import com.aiexam.dto.ApiResponse;
 import com.aiexam.dto.CreateQuestionRequest;
 import com.aiexam.dto.QuestionResponse;
 import com.aiexam.dto.UpdateQuestionRequest;
+import com.aiexam.enums.DifficultyLevel;
+import com.aiexam.enums.QuestionType;
 import com.aiexam.service.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -70,6 +72,92 @@ public class QuestionController {
                 .data(questionService.getAllQuestions())
                 .build();
     }
+
+    @GetMapping("/course/{courseId}")
+@PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+public ApiResponse<List<QuestionResponse>> getByCourse(
+        @PathVariable String courseId){
+
+    return ApiResponse.<List<QuestionResponse>>builder()
+            .success(true)
+            .message("Questions fetched successfully")
+            .data(questionService.getQuestionsByCourse(courseId))
+            .build();
+}
+
+@GetMapping("/subject/{subjectId}")
+@PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+public ApiResponse<List<QuestionResponse>> getBySubject(
+        @PathVariable String subjectId){
+
+    return ApiResponse.<List<QuestionResponse>>builder()
+            .success(true)
+            .message("Questions fetched successfully")
+            .data(questionService.getQuestionsBySubject(subjectId))
+            .build();
+}
+
+@GetMapping("/teacher/{teacherId}")
+@PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+public ApiResponse<List<QuestionResponse>> getByTeacher(
+        @PathVariable String teacherId){
+
+    return ApiResponse.<List<QuestionResponse>>builder()
+            .success(true)
+            .message("Questions fetched successfully")
+            .data(questionService.getQuestionsByTeacher(teacherId))
+            .build();
+}
+
+@GetMapping("/difficulty/{difficulty}")
+@PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+public ApiResponse<List<QuestionResponse>> getByDifficulty(
+        @PathVariable DifficultyLevel difficulty){
+
+    return ApiResponse.<List<QuestionResponse>>builder()
+            .success(true)
+            .message("Questions fetched successfully")
+            .data(questionService.getQuestionsByDifficulty(difficulty))
+            .build();
+}
+
+@GetMapping("/type/{type}")
+@PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+public ApiResponse<List<QuestionResponse>> getByType(
+        @PathVariable QuestionType type){
+
+    return ApiResponse.<List<QuestionResponse>>builder()
+            .success(true)
+            .message("Questions fetched successfully")
+            .data(questionService.getQuestionsByType(type))
+            .build();
+}
+
+@PatchMapping("/{id}/enable")
+@PreAuthorize("hasRole('ADMIN')")
+public ApiResponse<Void> enableQuestion(
+        @PathVariable String id){
+
+    questionService.enableQuestion(id);
+
+    return ApiResponse.<Void>builder()
+            .success(true)
+            .message("Question enabled successfully")
+            .build();
+}
+
+@PatchMapping("/{id}/disable")
+@PreAuthorize("hasRole('ADMIN')")
+public ApiResponse<Void> disableQuestion(
+        @PathVariable String id){
+
+    questionService.disableQuestion(id);
+
+    return ApiResponse.<Void>builder()
+            .success(true)
+            .message("Question disabled successfully")
+            .build();
+}
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")

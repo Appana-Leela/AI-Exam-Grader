@@ -1,6 +1,7 @@
 # Environment files
 .env
 **/.env
+ai-service/.env
 
 # ZIP files
 *.zip

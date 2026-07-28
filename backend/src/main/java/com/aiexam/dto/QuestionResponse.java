@@ -1,6 +1,7 @@
 package com.aiexam.dto;
 
 import com.aiexam.entity.QuestionOption;
+import com.aiexam.enums.BloomLevel;
 import com.aiexam.enums.DifficultyLevel;
 import com.aiexam.enums.QuestionType;
 import lombok.*;
@@ -17,13 +18,27 @@ public class QuestionResponse {
 
     private String examId;
 
+    private String courseId;
+
+    private String subjectId;
+
+    private String teacherId;
+
     private String questionText;
 
     private QuestionType questionType;
 
     private DifficultyLevel difficultyLevel;
 
+    private BloomLevel bloomLevel;
+
     private Integer marks;
+
+    private Double negativeMarks;
+
+    private Integer expectedTime;
+
+    private Integer displayOrder;
 
     private List<QuestionOption> options;
 
@@ -33,9 +48,8 @@ public class QuestionResponse {
 
     private List<String> keywords;
 
-    private String bloomLevel;
-
     private String explanation;
 
     private Boolean active;
+
 }

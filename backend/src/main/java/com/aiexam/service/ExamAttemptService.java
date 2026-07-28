@@ -22,12 +22,10 @@ public interface ExamAttemptService {
 
     List<TeacherAttemptResponse> getAttemptsByExam(
         String examId
-);
+    );
 
     ExamAttemptResponse evaluateAttempt(
         String attemptId,
         TeacherEvaluationRequest request
-);
-
-    
+    );
 }

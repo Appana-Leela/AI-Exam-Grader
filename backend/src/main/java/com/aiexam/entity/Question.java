@@ -1,5 +1,6 @@
 package com.aiexam.entity;
 
+import com.aiexam.enums.BloomLevel;
 import com.aiexam.enums.DifficultyLevel;
 import com.aiexam.enums.QuestionType;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,22 @@ public class Question extends BaseEntity {
     @Id
     private String id;
 
+    // ==========================================================
+    // Relationships
+    // ==========================================================
+
     @Indexed
     private String examId;
+
+    private String courseId;
+
+    private String subjectId;
+
+    private String teacherId;
+
+    // ==========================================================
+    // Question Details
+    // ==========================================================
 
     private String questionText;
 
@@ -33,45 +48,56 @@ public class Question extends BaseEntity {
 
     private DifficultyLevel difficultyLevel;
 
+    private BloomLevel bloomLevel;
+
     private Integer marks;
+
+    @Builder.Default
+    private Double negativeMarks = 0.0;
+
+    /*
+     * Estimated time (minutes)
+     */
+    private Integer expectedTime;
+
+    /*
+     * Display order inside question paper
+     */
+    private Integer displayOrder;
+
+    // ==========================================================
+    // MCQ Options
+    // ==========================================================
 
     private List<QuestionOption> options;
 
-    /*
-    * AI Evaluation Fields
-    */
+    // ==========================================================
+    // AI Evaluation Fields
+    // ==========================================================
 
+    /*
+     * Ideal / Expected Answer
+     */
     private String expectedAnswer;
 
     /*
-    * Rubric used by AI while grading.
-    * Example:
-    * Definition = 2 marks
-    * Diagram = 3 marks
-    * Explanation = 5 marks
-    */
+     * AI Evaluation Rubric
+     */
     private String evaluationRubric;
 
     /*
-    * Important keywords expected in answer.
-    */
+     * Important keywords expected in answer
+     */
     private List<String> keywords;
 
     /*
-    * Bloom Taxonomy Level
-    * Remember
-    * Understand
-    * Apply
-    * Analyze
-    * Evaluate
-    * Create
-    */
-    private String bloomLevel;
-
-    /*
-    * Explanation shown after exam.
-    */
+     * Explanation shown after exam
+     */
     private String explanation;
+
+    // ==========================================================
+    // Status
+    // ==========================================================
 
     @Builder.Default
     private Boolean active = true;

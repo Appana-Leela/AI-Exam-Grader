@@ -2,6 +2,8 @@ package com.aiexam.service;
 
 import com.aiexam.dto.AIEvaluationRequest;
 import com.aiexam.dto.AIEvaluationResponse;
+import com.aiexam.dto.AIQuestionGenerateRequest;
+import com.aiexam.dto.AIQuestionResponse;
 import com.aiexam.dto.request.IdealAnswerRequest;
 import com.aiexam.dto.response.IdealAnswerResponse;
 
@@ -13,6 +15,10 @@ public interface AIService {
 
     IdealAnswerResponse generateIdealAnswer(
             IdealAnswerRequest request
+    );
+
+    AIQuestionResponse generateQuestions(
+            AIQuestionGenerateRequest request
     );
 
 }

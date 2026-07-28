@@ -7,7 +7,8 @@ import com.aiexam.dto.request.IdealAnswerRequest;
 import com.aiexam.dto.response.IdealAnswerResponse;
 import com.aiexam.service.AIService;
 import org.springframework.stereotype.Service;
-
+import com.aiexam.dto.AIQuestionGenerateRequest;
+import com.aiexam.dto.AIQuestionResponse;
 @Service
 public class AIServiceImpl implements AIService {
 
@@ -32,5 +33,14 @@ public class AIServiceImpl implements AIService {
                 request.getQuestion()
         );
     }
+
+    @Override
+    public AIQuestionResponse generateQuestions(
+            AIQuestionGenerateRequest request
+    ) {
+        return fastApiClient.generateQuestions(request);
+    }
+
+    
 
 }

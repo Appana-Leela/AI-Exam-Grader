@@ -1,4 +1,4 @@
-package com.aiexam.controller;
+package com.aiexam.controller.admin;
 
 import com.aiexam.dto.admin.AdminDashboardResponse;
 import com.aiexam.service.AdminService;

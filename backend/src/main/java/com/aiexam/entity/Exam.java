@@ -124,6 +124,8 @@ public class Exam extends BaseEntity {
 
     private String teacherName;
 
+    private String teacherEmail;
+
     /**
      * Exam Type
      * Mid-1, Mid-2, Lab, Internal, Semester, Quiz

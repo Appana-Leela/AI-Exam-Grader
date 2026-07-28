@@ -25,5 +25,9 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     long countByRoleAndDeletedFalse(Role role);
 
+    long countByRoleAndDeletedFalseAndEnabledTrue(Role role);
+
+    long countByRoleAndEnabledTrue(Role role);
+
 }
 

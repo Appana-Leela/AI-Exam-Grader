@@ -119,7 +119,7 @@ public class ExamAttemptServiceImpl implements ExamAttemptService {
 
                         .anyMatch(option ->
 
-                                option.getOptionId()
+                                option.getOptionLabel()
                                         .equals(answer.getSelectedOptionId())
 
                                         &&

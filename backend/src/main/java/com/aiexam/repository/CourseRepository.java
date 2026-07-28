@@ -14,4 +14,8 @@ public interface CourseRepository extends MongoRepository<Course, String> {
 
     Optional<Course> findByCourseCode(String courseCode);
 
+    long countByDeletedFalse();
+
+    long countByDeletedFalseAndEnabledTrue();
+
 }

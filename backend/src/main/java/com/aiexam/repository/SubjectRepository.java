@@ -14,4 +14,8 @@ public interface SubjectRepository extends MongoRepository<Subject, String> {
 
     Optional<Subject> findBySubjectCode(String subjectCode);
 
+    long countByDeletedFalse();
+
+    long countByDeletedFalseAndEnabledTrue();
+
 }

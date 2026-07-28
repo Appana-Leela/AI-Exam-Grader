@@ -11,11 +11,29 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QuestionOption {
 
-    private String optionId;
+    /*
+     * Option Label
+     * Example:
+     * A, B, C, D
+     */
+    private String optionLabel;
 
+    /*
+     * Option Text
+     */
     private String optionText;
 
+    /*
+     * Whether this option is correct
+     */
     @Builder.Default
     private Boolean correct = false;
+
+    /*
+     * Display Order
+     * Example:
+     * 1,2,3,4
+     */
+    private Integer displayOrder;
 
 }

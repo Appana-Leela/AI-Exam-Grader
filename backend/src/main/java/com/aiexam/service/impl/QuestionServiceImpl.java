@@ -5,6 +5,8 @@ import com.aiexam.dto.QuestionResponse;
 import com.aiexam.dto.UpdateQuestionRequest;
 import com.aiexam.entity.Exam;
 import com.aiexam.entity.Question;
+import com.aiexam.enums.DifficultyLevel;
+import com.aiexam.enums.QuestionType;
 import com.aiexam.exception.ExamNotFoundException;
 import com.aiexam.exception.QuestionNotFoundException;
 import com.aiexam.mapper.QuestionMapper;
@@ -26,7 +28,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionResponse createQuestion(CreateQuestionRequest request) {
 
-        Exam exam = examRepository.findById(request.getExamId())
+        examRepository.findById(request.getExamId())
                 .orElseThrow(() ->
                         new ExamNotFoundException("Exam not found."));
 
@@ -36,8 +38,6 @@ public class QuestionServiceImpl implements QuestionService {
                 questionRepository.save(question)
         );
     }
-
-    
 
     @Override
     public QuestionResponse updateQuestion(
@@ -81,6 +81,75 @@ public class QuestionServiceImpl implements QuestionService {
                 .stream()
                 .map(QuestionMapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    public List<QuestionResponse> getQuestionsByCourse(String courseId) {
+
+        return questionRepository.findByCourseId(courseId)
+                .stream()
+                .map(QuestionMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<QuestionResponse> getQuestionsBySubject(String subjectId) {
+
+        return questionRepository.findBySubjectId(subjectId)
+                .stream()
+                .map(QuestionMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<QuestionResponse> getQuestionsByTeacher(String teacherId) {
+
+        return questionRepository.findByTeacherId(teacherId)
+                .stream()
+                .map(QuestionMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<QuestionResponse> getQuestionsByDifficulty(DifficultyLevel difficulty) {
+
+        return questionRepository.findByDifficultyLevel(difficulty)
+                .stream()
+                .map(QuestionMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<QuestionResponse> getQuestionsByType(QuestionType questionType) {
+
+        return questionRepository.findByQuestionType(questionType)
+                .stream()
+                .map(QuestionMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public void enableQuestion(String id) {
+
+        Question question = questionRepository.findById(id)
+                .orElseThrow(() ->
+                        new QuestionNotFoundException("Question not found."));
+
+        question.setActive(true);
+
+        questionRepository.save(question);
+    }
+
+    @Override
+    public void disableQuestion(String id) {
+
+        Question question = questionRepository.findById(id)
+                .orElseThrow(() ->
+                        new QuestionNotFoundException("Question not found."));
+
+        question.setActive(false);
+
+        questionRepository.save(question);
     }
 
     @Override

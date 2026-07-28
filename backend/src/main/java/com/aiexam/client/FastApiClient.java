@@ -6,7 +6,8 @@ import com.aiexam.dto.response.IdealAnswerResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
-
+import com.aiexam.dto.AIQuestionGenerateRequest;
+import com.aiexam.dto.AIQuestionResponse;
 @Component
 public class FastApiClient {
 
@@ -48,5 +49,17 @@ public class FastApiClient {
                 .body(IdealAnswerResponse.class);
 
     }
+
+    public AIQuestionResponse generateQuestions(
+        AIQuestionGenerateRequest request
+        ) {
+
+        return restClient.post()
+                .uri("/generate-questions")
+                .body(request)
+                .retrieve()
+                .body(AIQuestionResponse.class);
+
+        }
 
 }

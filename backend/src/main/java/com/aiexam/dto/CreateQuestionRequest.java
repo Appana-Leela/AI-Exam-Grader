@@ -1,6 +1,7 @@
 package com.aiexam.dto;
 
 import com.aiexam.entity.QuestionOption;
+import com.aiexam.enums.BloomLevel;
 import com.aiexam.enums.DifficultyLevel;
 import com.aiexam.enums.QuestionType;
 import jakarta.validation.constraints.Min;
@@ -19,6 +20,13 @@ public class CreateQuestionRequest {
     @NotBlank
     private String examId;
 
+    // New fields
+    private String courseId;
+
+    private String subjectId;
+
+    private String teacherId;
+
     @NotBlank
     private String questionText;
 
@@ -29,17 +37,27 @@ public class CreateQuestionRequest {
     private DifficultyLevel difficultyLevel;
 
     @NotNull
+    private BloomLevel bloomLevel;
+
+    @NotNull
     @Min(1)
     private Integer marks;
+
+    @Builder.Default
+    private Double negativeMarks = 0.0;
+
+    private Integer expectedTime;
+
+    private Integer displayOrder;
 
     private List<QuestionOption> options;
 
     private String expectedAnswer;
 
-    private String explanation;
     private String evaluationRubric;
 
     private List<String> keywords;
 
-    private String bloomLevel;
+    private String explanation;
+
 }
